@@ -1,0 +1,31 @@
+services:
+  backend:
+    image: perfufu/projetdocker-backend:latest
+    build:
+      context: ../back
+      dockerfile: ../docker/Dockerfile.backend
+    container_name: back
+    ports:
+      - "8080:80"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_HOST: db
+      DATABASE_NAME: docker
+      DATABASE_USER: docker
+    secrets:
+      - db_password
+    networks:
+      - frontend_net
+      - backend_net
+
+
+networks:
+  frontend_net:
+    driver: bridge
+  backend_net:
+    driver: bridge
+
+volumes:
+  db_data:
