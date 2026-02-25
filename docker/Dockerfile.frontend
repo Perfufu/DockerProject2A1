@@ -1,0 +1,6 @@
+FROM nginx:alpine
+
+COPY . /usr/share/nginx/html/
+RUN chmod 644 /usr/share/nginx/html/index.html
+
+EXPOSE 80
