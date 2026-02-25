@@ -39,7 +39,7 @@ services:
     networks:
       - backend_net
     healthcheck:
-      test: ["CMD", "mysql", "-u", "docker", "-proot", "docker", "-e", "SELECT 1 FROM users LIMIT 1;"]
+      test: ["CMD", "sh", "-c", "mysql -u docker -p$(cat /run/secrets/db_password) docker -e 'SELECT 1 FROM users LIMIT 1;'"]
       interval: 10s
       timeout: 5s
       retries: 10
@@ -66,3 +66,7 @@ networks:
 
 volumes:
   db_data:
+
+secrets:
+  db_password:
+    file: ./secrets/db_password.txt
