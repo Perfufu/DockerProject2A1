@@ -26,7 +26,7 @@ if (!isset($input['username']) || !isset($input['password'])) {
 $host     = getenv('DATABASE_HOST')     ?: 'db';
 $dbname   = getenv('DATABASE_NAME')     ?: 'docker';
 $user     = getenv('DATABASE_USER')     ?: 'root';
-$password = getenv('/run/secrets/db_password') ?: 'root';
+$password = trim(file_get_contents('/run/secrets/db_password')) ?: 'root';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $password);
