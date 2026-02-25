@@ -44,6 +44,19 @@ services:
       timeout: 5s
       retries: 10
 
+  frontend:
+    image: perfufu/projetdocker-frontend:latest
+    build:
+      context: ../front
+      dockerfile: ../docker/Dockerfile.frontend
+    container_name: front
+    ports:
+      - "8081:80"
+    depends_on:
+      - backend
+    networks:
+      - frontend_net
+
 
 networks:
   frontend_net:
