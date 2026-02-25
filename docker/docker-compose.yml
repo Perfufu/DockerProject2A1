@@ -20,6 +20,30 @@ services:
       - frontend_net
       - backend_net
 
+  db:
+    image: perfufu/projetdocker-db:latest
+    build:
+      context: ../database
+      dockerfile: ../docker/Dockerfile.bdd
+    container_name: db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_password
+      MYSQL_DATABASE: docker
+      MYSQL_USER: docker
+      MYSQL_PASSWORD_FILE: /run/secrets/db_password
+    secrets:
+      - db_password
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - backend_net
+    healthcheck:
+      test: ["CMD", "mysql", "-u", "docker", "-proot", "docker", "-e", "SELECT 1 FROM users LIMIT 1;"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
 
 networks:
   frontend_net:
