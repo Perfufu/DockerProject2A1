@@ -40,13 +40,14 @@ git --version
 
 ## 2. Cloner le projet
 
-Sur GitHub, aller sur [https://github.com/perfufu/ProjetDocker](https://github.com/perfufu/ProjetDocker) et cliquer sur **Fork** en haut à droite.
+Sur GitHub, aller sur [https://github.com/Perfufu/DockerProject2A1.git](https://github.com/Perfufu/DockerProject2A1.git) et cliquer sur **Fork** en haut à droite.
 
 Puis cloner son fork :
 
 ```bash
-git clone https://github.com/VOTRE_PSEUDO/ProjetDocker.git
-cd ProjetDocker
+git clone https://github.com/Perfufu/DockerProject2A1.git
+cd DockerProject2A1
+
 ```
 
 ---
@@ -148,8 +149,8 @@ Signed-By: /etc/apt/keyrings/docker.asc
 EOF
 sudo apt update && \
 sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin && \
-git clone https://github.com/Perfufu/ProjetDocker.git && \
-cd ProjetDocker && \
+git clone https://github.com/Perfufu/DockerProject2A1 && \
+cd DockerProject2A1 && \
 mkdir -p docker/secrets && \
 printf 'root' > docker/secrets/db_password.txt && \
 cd docker && \
